@@ -1,0 +1,11 @@
+{
+  "appId": "cheese.app",
+  "productName": "cheese",
+  "compression": "store",
+  "mac": {
+    "identity": null
+  },
+  "linux": {
+    "target": "AppImage"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "name": "vidme",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "dev": "electron-webpack dev",
+    "start": "electron-webpack dev &",
+    "compile": "electron-webpack --env.minify=false",
+    "package": "electron-builder",
+    "build": "yarn compile && yarn package",
+    "release": "yarn version && git push && git push --tags"
+  },
+  "dependencies": {
+    "@fullhuman/postcss-purgecss": "^3.0.0",
+    "@headlessui/react": "^1.4.1",
+    "@heroicons/react": "^1.0.4",
+    "autoprefixer": "^9",
+    "clsx": "^1.1.1",
+    "cssnano": "^4.1.10",
+    "electron-is": "^3.0.0",
+    "history": "^5.0.1",
+    "menubar": "^9.0.5",
+    "open": "^8.3.0",
+    "postcss": "^7",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "react-router-dom": "^6.0.0-beta.6",
+    "react-webcam": "^6.0.0",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "@babel/preset-react": "^7.14.5",
+    "@types/node": "^16.10.3",
+    "@types/react-dom": "17.0.1",
+    "@types/react-router-dom": "^5.3.1",
+    "dotenv": "^10.0.0",
+    "electron": "8.2.0",
+    "electron-builder": "^22.4.1",
+    "electron-webpack": "^2.8.2",
+    "electron-webpack-ts": "^4.0.1",
+    "file-loader": "^6.1.0",
+    "postcss-loader": "^3.0.0",
+    "style-loader": "^1.2.1",
+    "ts-loader": "~8.2.0",
+    "typescript": "^3.8.3",
+    "webpack": "~4.42.1"
+  },
+  "electronWebpack": {
+    "renderer": {
+      "webpackConfig": "webpack.renderer.additions.js"
+    }
+  }
+}
