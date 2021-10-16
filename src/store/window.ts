@@ -7,13 +7,13 @@ type Dimensions = {
 
 export const SIZES: Dimensions = {
   sm: {
-    width: 650,
-    height: 720,
+    width: 500,
+    height: 600,
   },
 
   md: {
-    width: 650,
-    height: 800,
+    width: 575,
+    height: 650,
   },
 
   lg: {
@@ -25,6 +25,13 @@ export const SIZES: Dimensions = {
     width: 750,
     height: 850,
   },
+};
+
+export const CAMERA_PREVIEW_SIZES = {
+  sm: 425,
+  md: 500,
+  lg: 650,
+  xl: 700,
 };
 
 export const windowSizeSelections = [
@@ -51,7 +58,7 @@ export const windowSizeSelections = [
 ];
 
 export default interface WindowStore {
-  size: keyof typeof SIZES;
+  size: 'sm' | 'md' | 'lg' | 'xl';
 
-  setSize(key: keyof typeof SIZES): void;
+  setSize(key: 'sm' | 'md' | 'lg' | 'xl'): void;
 }

@@ -2,6 +2,19 @@ module.exports = {
   purge: [],
   darkMode: 'class', // or 'media' or 'class'
   theme: {
+    screens: {
+      sm: '500px',
+      // => @media (min-width: 640px) { ... }
+
+      md: '575px',
+      // => @media (min-width: 768px) { ... }
+
+      lg: '700px',
+      // => @media (min-width: 1024px) { ... }
+
+      xl: '750px',
+      // => @media (min-width: 1280px) { ... }
+    },
     extend: {
       colors: {
         dark: {
@@ -19,14 +32,10 @@ module.exports = {
           stacking: 'rgba(25,25,25,0.2)',
         },
       },
-      maxWidth: {
-        '90vw': '90vw',
-        '95vw': '95vw',
-      },
     },
   },
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
 };

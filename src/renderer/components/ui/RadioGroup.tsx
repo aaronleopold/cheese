@@ -1,6 +1,7 @@
 import React from 'react';
 import { RadioGroup } from '@headlessui/react';
 import clsx from 'clsx';
+import Label from './Label';
 
 export interface RadioGroupItem {
   label: string;
@@ -9,7 +10,7 @@ export interface RadioGroupItem {
 }
 
 export interface RadioGroupProps {
-  srLabel?: string;
+  groupLabel?: string;
   items: RadioGroupItem[];
   selected: any;
   setSelected(newValue: any): void;
@@ -19,14 +20,17 @@ export default function ({
   items,
   selected,
   setSelected,
-  srLabel,
+  groupLabel,
 }: RadioGroupProps) {
   return (
     <RadioGroup value={selected} onChange={setSelected}>
-      {srLabel && (
-        <RadioGroup.Label className="sr-only">{srLabel}</RadioGroup.Label>
-      )}
-      <div className="bg-white dark:bg-dark-500 dark:text-dark-200 rounded-md -space-y-px">
+      {groupLabel && <Label>{groupLabel}</Label>}
+      <div
+        className={clsx(
+          groupLabel && 'mt-1',
+          'bg-white dark:bg-dark-500 dark:text-dark-200 rounded-md -space-y-px'
+        )}
+      >
         {items.map(({ label, sublabel, value }, idx) => (
           <RadioGroup.Option
             key={String(label + '-' + idx)}

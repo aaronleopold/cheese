@@ -30,7 +30,7 @@ export default function Navbar() {
   const isHome = location.pathname === '/';
 
   return (
-    <nav className="bg-white dark:bg-dark-950 dark:text-dark-200 h-18 p-3 grid grid-cols-6  items-center">
+    <nav className="fixed w-full bg-white dark:bg-dark-950 dark:text-dark-200 h-16 p-3 grid grid-cols-6 items-center">
       <NavItem justify="start">
         {isHome ? (
           <div />

@@ -4,7 +4,6 @@
   "license": "MIT",
   "scripts": {
     "dev": "electron-webpack dev",
-    "start": "electron-webpack dev &",
     "compile": "electron-webpack --env.minify=false",
     "package": "electron-builder",
     "build": "yarn compile && yarn package",
@@ -14,6 +13,8 @@
     "@fullhuman/postcss-purgecss": "^3.0.0",
     "@headlessui/react": "^1.4.1",
     "@heroicons/react": "^1.0.4",
+    "@tailwindcss/forms": "^0.3.4",
+    "@tailwindcss/typography": "^0.4.1",
     "autoprefixer": "^9",
     "clsx": "^1.1.1",
     "cssnano": "^4.1.10",

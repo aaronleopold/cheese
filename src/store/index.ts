@@ -1,6 +1,7 @@
 import Store from 'electron-store';
 import create from 'zustand';
 import { persist, StateStorage } from 'zustand/middleware';
+import MediaStorage, { defaultMediaStorage } from './storage';
 import ThemeStore from './theme';
 import WindowStore from './window';
 
@@ -25,7 +26,13 @@ const ElectronStore = {
   },
 } as StateStorage;
 
-export interface CheeseStore extends ThemeStore, WindowStore {}
+export interface CheeseStore extends ThemeStore, WindowStore, MediaStorage {
+  recordAudio: boolean;
+  toggleRecordAudio(): void;
+
+  mutePlayback: boolean;
+  toggleMutePlayback(): void;
+}
 
 const useStore = create<CheeseStore>(
   persist(
@@ -46,6 +53,26 @@ const useStore = create<CheeseStore>(
       size: 'md',
       setSize(key) {
         set({ size: key });
+      },
+
+      ...defaultMediaStorage,
+
+      setVideoDirectory(dir) {
+        set({ videoDirectory: dir });
+      },
+
+      setPictureDirectory(dir) {
+        set({ pictureDirectory: dir });
+      },
+
+      recordAudio: true,
+      toggleRecordAudio() {
+        set({ recordAudio: !get().recordAudio });
+      },
+
+      mutePlayback: true,
+      toggleMutePlayback() {
+        set({ mutePlayback: !get().mutePlayback });
       },
     }),
     {

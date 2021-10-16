@@ -1,4 +1,6 @@
 import React from 'react';
+import shallow from 'zustand/shallow';
+import useStore from '../../store';
 import { Devices, SelectedDevices } from '../hooks/useDevices';
 import DeviceSelect from './DeviceSelect';
 import Radio from './ui/Radio';
@@ -7,24 +9,19 @@ export interface DeviceOptionsProps {
   selectedDevices?: SelectedDevices;
   onSelect(device: MediaDeviceInfo): void;
   devices?: Devices;
-  recordAudio: boolean;
-  toggleRecordAudio(): void;
-  mutePlayback: boolean;
-  toggleMutePlayback(): void;
 }
 
 export default function DeviceOptions({
   devices,
   selectedDevices,
   onSelect,
-  recordAudio,
-  toggleRecordAudio,
-  mutePlayback,
-  toggleMutePlayback,
 }: DeviceOptionsProps) {
+  const { recordAudio, mutePlayback, toggleRecordAudio, toggleMutePlayback } =
+    useStore((state) => state, shallow);
+
   return (
-    <div className="flex flex-col space-y-2">
-      <div className="flex items-center space-x-4">
+    <div className="flex flex-col space-y-4">
+      <div className="flex flex-col space-y-4 lg:flex-row lg:space-x-4 lg:items-center">
         <DeviceSelect
           label="Video Devices"
           devices={devices?.videoinputs}
@@ -41,13 +38,15 @@ export default function DeviceOptions({
         />
       </div>
 
-      <div className="flex items-center space-x-4">
+      <div className="flex items-center space-x-4 flex-wrap">
         <Radio
+          title="Add audio to your recorded video"
           label="Record Audio"
           value={recordAudio}
           onClick={toggleRecordAudio}
         />
         <Radio
+          title="When toggled you won't hear yourself as you speak"
           label="Mute Playback"
           value={mutePlayback}
           onClick={toggleMutePlayback}

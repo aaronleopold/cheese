@@ -2,6 +2,7 @@ import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid';
 import clsx from 'clsx';
 import React, { Fragment } from 'react';
+import Label from './ui/Label';
 
 interface VideoDevicesProps {
   label: string;
@@ -22,9 +23,7 @@ export default function DeviceSelect({
   return (
     <div className="flex-1">
       <Listbox value={selected} onChange={onSelect} disabled={disabled}>
-        <Listbox.Label className="block text-sm font-medium text-gray-700 dark:text-dark-200">
-          {label}
-        </Listbox.Label>
+        <Listbox.Label as={Label}>{label}</Listbox.Label>
         <div className="mt-1 relative">
           <Listbox.Button
             className={clsx(

@@ -1,15 +1,17 @@
 import clsx from 'clsx';
 import React from 'react';
+import Label from './Label';
 
 interface RadioProps {
+  title?: string;
   label: string;
   value: boolean;
   onClick(): void;
 }
 
-export default function Radio({ label, value, onClick }: RadioProps) {
+export default function Radio({ title, label, value, onClick }: RadioProps) {
   return (
-    <div className="flex space-x-2 items-center">
+    <div className="flex space-x-2 items-center" title={title}>
       <button
         onClick={onClick}
         className={clsx(
@@ -22,9 +24,7 @@ export default function Radio({ label, value, onClick }: RadioProps) {
       >
         <span className="rounded-full bg-white dark:bg-dark-300 w-1.5 h-1.5" />
       </button>
-      <span className="block text-sm font-medium text-gray-700 dark:text-dark-200">
-        {label}
-      </span>
+      <Label>{label}</Label>
     </div>
   );
 }
