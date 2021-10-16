@@ -22,17 +22,21 @@ export default function DeviceSelect({
   return (
     <div className="flex-1">
       <Listbox value={selected} onChange={onSelect} disabled={disabled}>
-        <Listbox.Label className="block text-sm font-medium text-gray-700">
+        <Listbox.Label className="block text-sm font-medium text-gray-700 dark:text-dark-200">
           {label}
         </Listbox.Label>
         <div className="mt-1 relative">
           <Listbox.Button
             className={clsx(
-              disabled ? 'bg-gray-100 cursor-not-allowed' : 'bg-white',
-              'relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+              disabled
+                ? 'bg-gray-100 dark:bg-dark-800 cursor-not-allowed'
+                : 'bg-white dark:bg-dark-400',
+              'relative w-full border border-gray-300 dark:border-dark-600 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
             )}
           >
-            <span className="block truncate">{selected?.label}</span>
+            <span className="block truncate dark:text-dark-200">
+              {selected?.label}
+            </span>
             <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
               <SelectorIcon
                 className="h-5 w-5 text-gray-400"
@@ -47,13 +51,15 @@ export default function DeviceSelect({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options className="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-32 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
+            <Listbox.Options className="absolute z-10 mt-1 w-full bg-white dark:bg-dark-400 shadow-lg max-h-32 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
               {devices.map((device) => (
                 <Listbox.Option
                   key={device.deviceId}
                   className={({ active }) =>
                     clsx(
-                      active ? 'text-white bg-indigo-600' : 'text-gray-900',
+                      active
+                        ? 'text-white bg-indigo-600'
+                        : 'text-gray-900 dark:text-dark-200',
                       'cursor-default select-none relative py-2 pl-3 pr-9'
                     )
                   }
@@ -64,7 +70,7 @@ export default function DeviceSelect({
                       <span
                         className={clsx(
                           selected ? 'font-semibold' : 'font-normal',
-                          'block truncate'
+                          'block truncate dark:text-dark-200'
                         )}
                       >
                         {device.label}
@@ -77,7 +83,10 @@ export default function DeviceSelect({
                             'absolute inset-y-0 right-0 flex items-center pr-4'
                           )}
                         >
-                          <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                          <CheckIcon
+                            className="h-5 w-5 dark:text-dark-200"
+                            aria-hidden="true"
+                          />
                         </span>
                       ) : null}
                     </>

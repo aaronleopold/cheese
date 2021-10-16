@@ -3,9 +3,16 @@
   "productName": "cheese",
   "compression": "store",
   "mac": {
+    "icon": "src/assets/icons/mac/icon.icns",
     "identity": null
   },
   "linux": {
+    "icon": "src/assets/icons/mac/icon.icns",
     "target": "AppImage"
-  }
+  },
+  "win": {
+    "target": "nsis",
+    "icon": "src/assets/icons/win/icon.ico"
+  },
+  "files": ["src/assets/**/*"]
 }

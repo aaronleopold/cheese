@@ -12,8 +12,9 @@ export default function Home() {
   return (
     <div className="flex flex-col space-y-4 mt-4">
       <div className="flex items-center justify-center">
-        <div className="flex flex-col space-y-4 bg-white p-4 rounded-md shadow-sm">
+        <div className="flex flex-col space-y-4 bg-white dark:bg-dark-800 p-4 rounded-md shadow-sm">
           <Webcam
+            onLoad={() => console.log('VIDEO LOADED')}
             className="rounded-md overflow-hidden"
             audio={recordAudio}
             muted={mutePlayback}

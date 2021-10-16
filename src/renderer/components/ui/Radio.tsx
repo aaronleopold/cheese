@@ -15,14 +15,16 @@ export default function Radio({ label, value, onClick }: RadioProps) {
         className={clsx(
           value
             ? 'bg-indigo-600 border-transparent'
-            : 'bg-white border-gray-300',
+            : 'bg-white border-gray-300 dark:bg-dark-500 dark:border-dark-400',
           'h-4 w-4 mt-0.5 cursor-pointer rounded-full border flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
         )}
         aria-hidden="true"
       >
-        <span className="rounded-full bg-white w-1.5 h-1.5" />
+        <span className="rounded-full bg-white dark:bg-dark-300 w-1.5 h-1.5" />
       </button>
-      <span className="block text-sm font-medium text-gray-700">{label}</span>
+      <span className="block text-sm font-medium text-gray-700 dark:text-dark-200">
+        {label}
+      </span>
     </div>
   );
 }
