@@ -23,12 +23,15 @@ export default function useDevices() {
     async function init() {
       let mediaDevices = await navigator.mediaDevices.enumerateDevices();
 
-      let newDevices = initialDevices;
+      let newDevices: Devices = {
+        audioinputs: [],
+        videoinputs: [],
+      };
 
       // for some reason some devices get picked up multiple times.
       // so I am using a set to ensure only one device with a deviceId gets
       // added to the array
-      let seen = new Set();
+      let seen = new Set<string>();
 
       mediaDevices.forEach((device) => {
         if (!seen.has(device.deviceId)) {

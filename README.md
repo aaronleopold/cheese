@@ -1,8 +1,25 @@
 <h1 align="center">
-  <img src="https://github.com/aaronleopold/cheese/blob/main/src/assets/temp-readme-logo.png" />
+  <img alt='Cheese Logo' src="https://github.com/aaronleopold/cheese/blob/main/src/assets/temp-readme-logo.png" />
 </h1>
 
-A menubar application to record videos of yourself using your webcam.
+A menubar application to take pictures or record videos of yourself using your webcam.
+
+<h1 align="center">
+  <img alt='Cringey Demo Gif' src="https://github.com/aaronleopold/cheese/blob/main/src/assets/temp-readme-demo-very-cringe-lol.gif" />
+</h1>
+
+## Roadmap
+
+This is more of a TODO list for me :)
+
+- [x] Get basic UI set up
+- [x] Make UI responsive
+- [x] Allow customized storage paths
+- [ ] Set up application flows (e.g. home, recording, recorded/viewing, screenshot, etc)
+- [ ] Allow screen shots (selfies; halfway done, I can get the image buffer currently)
+- [ ] Allow recording
+- [ ] Fix the dependencies
+  - This is a MESS currently. A lot of the deps just don't play well with each other and require very specific versions, which is introducing some security issues. These should be sorted out eventually.
 
 ## Attribution
 

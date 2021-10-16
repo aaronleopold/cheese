@@ -1,7 +1,5 @@
 import glob from 'glob';
-// import fs from 'fs';
 const fs = window.require('fs');
-
 const remote = window.require('electron').remote;
 
 type FilePickerConfig = {
@@ -32,15 +30,11 @@ export default function pickFile({ name, extensions, dir }: FilePickerConfig) {
 }
 
 export async function readImage(filePath: string) {
-  return await fs.readFileSync(filePath, { encoding: 'utf8' });
-}
-
-export async function readIas(filePath: string) {
-  return await fs.readFileSync(filePath, { encoding: 'utf8' });
+  return fs.readFileSync(filePath, { encoding: 'utf8' });
 }
 
 export async function getDirectoryFiles(dir: string) {
-  return await glob
+  return glob
     .sync(`${dir}/*.jpg`, { nocase: true, absolute: true })
     .map((file) => file);
 }
