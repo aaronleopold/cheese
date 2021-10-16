@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="https://www.github.com/cheese/src/assets/temp-readme-logo.png" />
+  <img src="https://github.com/aaronleopold/cheese/blob/main/src/assets/temp-readme-logo.png" />
 </h1>
 
 A menubar application to record videos of yourself using your webcam.
