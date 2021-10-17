@@ -16,9 +16,13 @@ This is more of a TODO list for me :)
 - [x] Make UI responsive
 - [x] Allow selection of available devices
 - [x] Allow customized storage paths
-- [ ] Set up application flows (e.g. home, recording, recorded/viewing, screenshot, etc)
+- [x] Set up application flows (e.g. home, recording, recorded/viewing, screenshot, etc)
 - [ ] Allow screen shots (selfies; halfway done, I can get the image buffer currently)
+  - [x] display
+  - [ ] download
 - [ ] Allow recording
+- [ ] Fix the viewport for the camera
+  - currently, restricting the size of the camera window changes the size of the resulting video. I just want the overflow to be hidden, rather than actually setting the size of the video.
 - [ ] Fix the dependencies
   - This is a MESS currently. A lot of the deps just don't play well with each other and require very specific versions, which is introducing some security issues. These should be sorted out eventually.
 

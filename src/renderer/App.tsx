@@ -7,7 +7,7 @@ import Home from './pages/Home/Home';
 import Settings from './pages/Settings/Settings';
 
 export default function App() {
-  const { theme, flow, setFlow } = useStore((state) => state, shallow);
+  const { theme, setFlow } = useStore((state) => state, shallow);
 
   useEffect(() => {
     if (theme === 'dark') {
