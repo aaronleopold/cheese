@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import shallow from 'zustand/shallow';
-import useStore from '../store';
+import useStore, { ApplicationFlow } from '../store';
 import Layout from './components/Layout';
 import Home from './pages/Home/Home';
 import Settings from './pages/Settings/Settings';
 
 export default function App() {
-  const theme = useStore((state) => state.theme, shallow);
+  const { theme, flow, setFlow } = useStore((state) => state, shallow);
 
   useEffect(() => {
     if (theme === 'dark') {
@@ -16,6 +16,12 @@ export default function App() {
       document.querySelector('html')?.classList.remove('dark');
     }
   }, [theme]);
+
+  useEffect(() => {
+    return () => {
+      setFlow(ApplicationFlow.Home);
+    };
+  }, []);
 
   return (
     <MemoryRouter>

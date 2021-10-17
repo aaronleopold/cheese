@@ -14,6 +14,7 @@ This is more of a TODO list for me :)
 
 - [x] Get basic UI set up
 - [x] Make UI responsive
+- [x] Allow selection of available devices
 - [x] Allow customized storage paths
 - [ ] Set up application flows (e.g. home, recording, recorded/viewing, screenshot, etc)
 - [ ] Allow screen shots (selfies; halfway done, I can get the image buffer currently)
