@@ -3,8 +3,8 @@ import React from 'react';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import Heading from './ui/Heading';
-//@ts-ignore
-import cheeseLogo from '../../assets/icons/png/32x32.png';
+//@ts-ignore:
+import cheeseLogo from '../../../static/icons/png/32x32.png';
 
 interface NavItemProps {
   justify: 'center' | 'end' | 'start';

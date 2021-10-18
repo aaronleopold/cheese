@@ -1,11 +1,11 @@
 <h1 align="center">
-  <img alt='Cheese Logo' src="https://github.com/aaronleopold/cheese/blob/main/src/assets/temp-readme-logo.png" />
+  <img alt='Cheese Logo' src="https://github.com/aaronleopold/cheese/blob/main/static/temp-readme-logo.png" />
 </h1>
 
 A menubar application to take pictures or record videos of yourself using your webcam. I love a good menubar app 😄
 
 <h1 align="center">
-  <img alt='Cringey Demo Gif' src="https://github.com/aaronleopold/cheese/blob/main/src/assets/temp-readme-demo-very-cringe-lol.gif" />
+  <img alt='Cringey Demo Gif' src="https://github.com/aaronleopold/cheese/blob/main/static/temp-readme-demo-very-cringe-lol.gif" />
 </h1>
 
 ## Roadmap
@@ -21,12 +21,15 @@ This is more of a TODO list for me :)
   - [x] display
   - [ ] download
 - [ ] Allow recording
+  - [x] start/stop recording to chunks
+  - [ ] download
 - [ ] Add a yellow/orange theme (I mean, it IS cheese so)
+- [ ] Finish dark theme
 - [ ] Fix the viewport for the camera
   - currently, restricting the size of the camera window changes the size of the resulting video. I just want the overflow to be hidden, rather than actually setting the size of the video.
 - [ ] Fix the dependencies
   - This is a MESS currently. A lot of the deps just don't play well with each other and require very specific versions, which is introducing some security issues. These should be sorted out eventually.
-- [ ] Fix the icon on build (it doesn't work D:)
+- [x] Fix the icon on build ~(it doesn't work D:)~
 
 ## Attribution
 

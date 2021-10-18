@@ -21,15 +21,17 @@ app.on('ready', () => {
           protocol: 'file:',
           slashes: true,
         }),
-    icon: path.join(__dirname, '..', 'assets/icons/png/16x16.png'),
+    // icon: path.join(__dirname, '..', 'assets/icons/png/16x16.png'),
+    // @ts-ignore: __static will be injected
+    icon: path.join(__static, 'icons/png/16x16.png'),
     tooltip: 'Cheese',
     browserWindow: {
       ...getDefaultWindowSize(),
-      // resizable: false,
+      resizable: is.dev(),
       webPreferences: {
         nodeIntegration: true,
       },
-      alwaysOnTop: process.env.NODE_ENV !== 'production',
+      alwaysOnTop: is.dev(),
     },
   });
 
