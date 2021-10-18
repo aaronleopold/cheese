@@ -34,25 +34,29 @@ export const CAMERA_PREVIEW_SIZES = {
   xl: 700,
 };
 
+function formatDimension(size: { height: number; width: number }) {
+  return `Width: ${size.width}px, Height: ${size.height}px`;
+}
+
 export const windowSizeSelections = [
   {
     label: 'Small',
-    sublabel: `width: ${SIZES.sm.width}, height: ${SIZES.sm.height}`,
+    sublabel: formatDimension(SIZES.sm),
     value: 'sm',
   },
   {
     label: 'Medium',
-    sublabel: `width: ${SIZES.md.width}, height: ${SIZES.md.height}`,
+    sublabel: formatDimension(SIZES.md),
     value: 'md',
   },
   {
     label: 'Large',
-    sublabel: `width: ${SIZES.lg.width}, height: ${SIZES.lg.height}`,
+    sublabel: formatDimension(SIZES.lg),
     value: 'lg',
   },
   {
     label: 'Extra Large',
-    sublabel: `width: ${SIZES.xl.width}, height: ${SIZES.xl.height}`,
+    sublabel: formatDimension(SIZES.xl),
     value: 'xl',
   },
 ];

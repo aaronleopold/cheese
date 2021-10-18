@@ -22,15 +22,32 @@ This is more of a TODO list for me :)
   - [ ] download
 - [ ] Allow recording
   - [x] start/stop recording to chunks
+  - [ ] display before download
+    - [ ] webp
+    - [ ] avi
+    - [ ] ogg
+    - [ ] mp4
   - [ ] download
-- [ ] Add a yellow/orange theme (I mean, it IS cheese so)
-- [ ] Finish dark theme
+    - [x] webp
+    - [ ] avi
+    - [ ] ogg
+    - [x] mp4
+- [x] Add a yellow/orange theme (I mean, it IS cheese so)
+- [x] Finish dark theme
 - [ ] Fix the viewport for the camera
   - currently, restricting the size of the camera window changes the size of the resulting video. I just want the overflow to be hidden, rather than actually setting the size of the video.
-- [ ] Fix the dependencies
-  - This is a MESS currently. A lot of the deps just don't play well with each other and require very specific versions, which is introducing some security issues. These should be sorted out eventually.
-  - Migrate to [Vite](https://github.com/cawa-93/vite-electron-builder)??
+- [x] Fix the dependencies
+  - ~This is a MESS currently. A lot of the deps just don't play well with each other and require very specific versions, which is introducing some security issues. These should be sorted out eventually.~ Fixed all fixable security issues from this. electron-webpack is not currently maintained, so in the future it might be wise to move away from webpack. see [Future Work](#future-work)
 - [x] Fix the icon on build ~(it doesn't work D:)~
+
+## Future Work
+
+There are two potential, major changes/migrations I can see choosing between for the (distant) future of this application:
+
+- Migrate to [Vite](https://github.com/cawa-93/vite-electron-builder) from Webpack
+  - Maintained library, less security updates/maintenence, etc.
+- Mirgrate away from Electron over to [Neutralinojs](https://github.com/neutralinojs/neutralinojs)
+  - Smaller bundle, less resource heavy, etc
 
 ## Attribution
 

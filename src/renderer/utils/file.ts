@@ -1,4 +1,5 @@
 import glob from 'glob';
+import { VideoFormat } from '../../store';
 const fs = window.require('fs');
 const remote = window.require('electron').remote;
 
@@ -37,4 +38,22 @@ export async function getDirectoryFiles(dir: string) {
   return glob
     .sync(`${dir}/*.jpg`, { nocase: true, absolute: true })
     .map((file) => file);
+}
+
+function convertWebmToMp4(chunks: any) {
+  return chunks;
+}
+
+export function converWebmToFormat(
+  format: Omit<VideoFormat, 'video/webm'>,
+  chunks: any
+) {
+  switch (format) {
+    case 'video/mp4': {
+      return convertWebmToMp4(chunks);
+    }
+
+    default:
+      throw new Error(`I can't convert webm to ${format} yet!`);
+  }
 }

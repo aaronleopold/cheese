@@ -1,18 +1,23 @@
 import { Dialog, Transition } from '@headlessui/react';
-import React, { Fragment, useRef } from 'react';
-import shallow from 'zustand/shallow';
-import useStore, { ApplicationFlow } from '../../store';
+import React, { Fragment, useContext, useRef } from 'react';
+import { ApplicationContext, ApplicationFlow } from '../context';
 
 export interface FileExportModalProps {
   recordedChunks?: any;
   screenshotData?: string;
+  downloadRecording(): void;
+  downloadScreenshot(): void;
+  clear(): void;
 }
 
 export default function FileExportModal({
   recordedChunks,
   screenshotData,
+  downloadRecording,
+  downloadScreenshot,
+  clear,
 }: FileExportModalProps) {
-  const { flow, setFlow, videoFormat } = useStore((state) => state, shallow);
+  const { flow, setFlow } = useContext(ApplicationContext);
   const cancelButtonRef = useRef(null);
 
   function shouldShowModal() {
@@ -24,27 +29,27 @@ export default function FileExportModal({
 
   function handleClose() {
     setFlow(ApplicationFlow.Home);
+    clear();
   }
 
-  // TODO: move this into the useCamera hook
-  function getDataUrl() {
+  function handleDownload() {
     if (recordedChunks?.length) {
-      const blob = new Blob(recordedChunks, {
-        type: videoFormat,
-      });
-
-      return URL.createObjectURL(blob);
+      downloadRecording();
     } else if (screenshotData) {
-      return screenshotData;
+      downloadScreenshot();
     } else {
-      // throw new Error('No data could be found to export');
-      return undefined;
+      // TODO
     }
   }
 
   function renderContent() {
     if (recordedChunks?.length) {
-      return <video src={recordedChunks} />;
+      const blob = new Blob(recordedChunks, {
+        type: 'video/webm',
+      });
+      // TODO: handle this differently so I can revoke this on unmount
+      const url = URL.createObjectURL(blob);
+      return <video src={url} controls autoPlay />;
     } else if (screenshotData) {
       return <img src={screenshotData} />;
     } else {
@@ -92,16 +97,15 @@ export default function FileExportModal({
             <div className="sm:max-w-lg inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full sm:p-6">
               <div className="">{renderContent()}</div>
               <div className="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
-                <a
-                  href={getDataUrl()}
-                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:col-start-2 sm:text-sm"
-                  download
+                <button
+                  onClick={handleDownload}
+                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-theme-orange-500 text-base font-medium text-white hover:bg-theme-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-theme-orange-400 sm:col-start-2 sm:text-sm"
                 >
                   Export File
-                </a>
+                </button>
                 <button
                   type="button"
-                  className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:col-start-1 sm:text-sm"
+                  className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-theme-orange-400 sm:mt-0 sm:col-start-1 sm:text-sm"
                   onClick={handleClose}
                   ref={cancelButtonRef}
                 >

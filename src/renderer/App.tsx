@@ -1,13 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import shallow from 'zustand/shallow';
-import useStore, { ApplicationFlow } from '../store';
+import useStore from '../store';
 import Layout from './components/Layout';
+import { ApplicationContext, ApplicationFlow } from './context';
 import Home from './pages/Home/Home';
 import Settings from './pages/Settings/Settings';
 
 export default function App() {
-  const { theme, flow, setFlow } = useStore((state) => state, shallow);
+  const [flow, setFlow] = useState<ApplicationFlow>(ApplicationFlow.Home);
+  const { theme } = useStore((state) => state, shallow);
 
   useEffect(() => {
     if (theme === 'dark') {
@@ -28,13 +30,15 @@ export default function App() {
   }, []);
 
   return (
-    <MemoryRouter>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/settings" element={<Settings />} />
-        </Routes>
-      </Layout>
-    </MemoryRouter>
+    <ApplicationContext.Provider value={{ flow, setFlow }}>
+      <MemoryRouter>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/settings" element={<Settings />} />
+          </Routes>
+        </Layout>
+      </MemoryRouter>
+    </ApplicationContext.Provider>
   );
 }

@@ -40,7 +40,7 @@ export default function ({
                 idx === 0 ? 'rounded-tl-md rounded-tr-md' : '',
                 idx === items.length - 1 ? 'rounded-bl-md rounded-br-md' : '',
                 checked
-                  ? 'bg-indigo-50 border-indigo-200 z-10'
+                  ? 'bg-theme-orange-50 border-theme-orange-100 z-10'
                   : 'border-gray-200 dark:border-dark-400',
                 'relative border p-4 flex cursor-pointer focus:outline-none'
               )
@@ -51,20 +51,29 @@ export default function ({
                 <span
                   className={clsx(
                     checked
-                      ? 'bg-indigo-600 border-transparent'
-                      : 'bg-white border-gray-300',
-                    active ? 'ring-2 ring-offset-2 ring-indigo-500' : '',
+                      ? 'bg-theme-orange-500 border-transparent'
+                      : 'bg-white border-gray-300 dark:bg-dark-300 dark:border-dark-400',
+                    active ? 'ring-2 ring-offset-2 ring-theme-orange-400' : '',
                     'h-4 w-4 mt-0.5 cursor-pointer rounded-full border flex items-center justify-center'
                   )}
                   aria-hidden="true"
                 >
-                  <span className="rounded-full bg-white w-1.5 h-1.5" />
+                  <span
+                    className={clsx(
+                      checked
+                        ? 'bg-theme-orange-100'
+                        : 'bg-white dark:bg-dark-300',
+                      'rounded-full w-1.5 h-1.5'
+                    )}
+                  />
                 </span>
                 <div className="ml-3 flex flex-col">
                   <RadioGroup.Label
                     as="span"
                     className={clsx(
-                      checked ? 'text-indigo-900' : 'text-gray-900',
+                      checked
+                        ? 'text-theme-orange-800'
+                        : 'text-gray-900 dark:text-dark-200',
                       'block text-sm font-medium'
                     )}
                   >
@@ -75,7 +84,9 @@ export default function ({
                     <RadioGroup.Description
                       as="span"
                       className={clsx(
-                        checked ? 'text-indigo-700' : 'text-gray-500',
+                        checked
+                          ? 'text-theme-orange-600'
+                          : 'text-gray-500 dark:text-dark-300',
                         'block text-sm'
                       )}
                     >

@@ -1,44 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 import shallow from 'zustand/shallow';
 import useStore from '../../store';
 import Select, { SelectOption } from './ui/Select';
 
-// FIXME: not done
+const videoOptions: SelectOption[] = [
+  {
+    label: 'MP4',
+    value: 'video/mp4',
+  },
+  {
+    label: 'AVI',
+    value: 'video/avi',
+  },
+  {
+    label: 'Webm',
+    value: 'video/webm',
+  },
+  {
+    label: 'Ogg',
+    value: 'video/ogg',
+  },
+];
+
 export default function VideoFormatSelect() {
   const { videoFormat, setVideoFormat } = useStore((state) => state, shallow);
-
-  const videoOptions: SelectOption[] = [
-    {
-      label: 'MP4',
-      value: 'video/mp4',
-    },
-    {
-      label: 'AVI',
-      value: 'video/avi',
-    },
-    {
-      label: 'Webm',
-      value: 'video/webm',
-    },
-    {
-      label: 'Ogg',
-      value: 'video/ogg',
-    },
-  ];
+  const [selected, setSelected] = useState(getSelected());
 
   function getSelected() {
     return videoOptions.find((opt) => opt.value === videoFormat);
   }
 
-  function handleChange(option: SelectOption) {
-    setVideoFormat(option.value);
+  function handleChange(value: any) {
+    const option = videoOptions.find((opt) => opt.value === value);
+
+    if (option) {
+      setSelected(option);
+      setVideoFormat(option.value);
+    }
   }
 
   return (
     <Select
       label="Video Format"
       options={videoOptions}
-      selected={getSelected()}
+      selected={selected}
       onSelect={handleChange}
     />
   );

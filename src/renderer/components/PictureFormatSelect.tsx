@@ -9,16 +9,15 @@ const screenshotOptions: SelectOption[] = [
     value: 'image/webp',
   },
   {
-    label: 'Png',
+    label: 'PNG',
     value: 'image/png',
   },
   {
-    label: 'Jpeg',
+    label: 'JPEG',
     value: 'image/jpeg',
   },
 ];
 
-// FIXME: not done
 export default function PictureFormatSelect() {
   const { screenshotFormat, setScreenshotFormat } = useStore(
     (state) => state,

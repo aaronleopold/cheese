@@ -1,4 +1,6 @@
 import { useCallback, useMemo, useRef, useState } from 'react';
+import { generate } from 'randomstring';
+import useStore from '../../store';
 
 export default function useCamera() {
   // FIXME: type this
@@ -7,6 +9,12 @@ export default function useCamera() {
 
   const [screenshotData, setScreenshotData] = useState<string>();
   const [recordedChunks, setRecordedChunks] = useState<any[]>([]);
+
+  const { videoFormat, screenshotFormat } = useStore((state) => state);
+
+  function getDownloadFileName(format: string) {
+    return `${generate({ length: 7 })}.${format.split('/')[1]}`;
+  }
 
   const handleDataAvailable = useCallback(
     ({ data }) => {
@@ -21,6 +29,16 @@ export default function useCamera() {
     () => ({
       screenshot() {
         setScreenshotData(cameraRef.current?.getScreenshot());
+      },
+
+      downloadScreenshot() {
+        const a = document.createElement('a');
+        document.body.appendChild(a);
+        a.classList.add('hidden');
+        a.href = screenshotData!;
+        a.download = getDownloadFileName(screenshotFormat);
+        a.click();
+        document.removeChild(a);
       },
 
       startRecording() {
@@ -41,21 +59,32 @@ export default function useCamera() {
       downloadRecording() {
         if (recordedChunks.length) {
           const blob = new Blob(recordedChunks, {
-            type: 'video/webm',
+            type: videoFormat,
           });
           const url = URL.createObjectURL(blob);
           const a = document.createElement('a');
           document.body.appendChild(a);
           a.classList.add('hidden');
           a.href = url;
-          a.download = 'react-webcam-stream-capture.webm';
+          a.download = getDownloadFileName(videoFormat);
           a.click();
           window.URL.revokeObjectURL(url);
-          setRecordedChunks([]);
         }
       },
+
+      clear() {
+        setScreenshotData(undefined);
+        setRecordedChunks([]);
+      },
     }),
-    [cameraRef, mediaRecorderRef, recordedChunks, screenshotData]
+    [
+      cameraRef,
+      mediaRecorderRef,
+      recordedChunks,
+      screenshotData,
+      videoFormat,
+      screenshotFormat,
+    ]
   );
 
   return [cameraRef, { screenshotData, recordedChunks }, actions] as const;

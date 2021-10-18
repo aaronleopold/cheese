@@ -1,9 +1,9 @@
 import { PropsOf } from '@headlessui/react/dist/types';
 import { CameraIcon, StopIcon, VideoCameraIcon } from '@heroicons/react/solid';
 import clsx from 'clsx';
-import React from 'react';
+import React, { useContext } from 'react';
 import shallow from 'zustand/shallow';
-import useStore, { ApplicationFlow } from '../../store';
+import { ApplicationContext, ApplicationFlow } from '../context';
 
 interface ControlButtonProps extends PropsOf<'button'> {
   circle?: boolean;
@@ -24,7 +24,7 @@ function ControlButton({
       <button
         className={clsx(
           circle ? 'rounded-full p-1.5' : 'rounded-md px-2.5 py-1.5',
-          'inline-flex items-center border border-transparent text-xs font-medium rounded text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+          'inline-flex items-center border border-transparent text-xs font-medium rounded text-theme-orange-600 bg-theme-orange-50 hover:bg-theme-orange-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-theme-orange-400'
         )}
         {...props}
       />
@@ -43,7 +43,7 @@ export default function Controls({
   startRecording,
   stopRecording,
 }: ControlsProps) {
-  const { flow, setFlow } = useStore((state) => state, shallow);
+  const { flow, setFlow } = useContext(ApplicationContext);
 
   function handleScreenshot() {
     screenshot();

@@ -37,7 +37,7 @@ export default function Select({
               disabled
                 ? 'bg-gray-100 dark:bg-dark-800 cursor-not-allowed'
                 : 'bg-white dark:bg-dark-400',
-              'relative w-full border border-gray-300 dark:border-dark-600 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+              'relative w-full border border-gray-300 dark:border-dark-600 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-theme-orange-400 focus:border-theme-orange-400 sm:text-sm'
             )}
           >
             <span className="block truncate dark:text-dark-200">
@@ -64,7 +64,7 @@ export default function Select({
                   className={({ active }) =>
                     clsx(
                       active
-                        ? 'text-white bg-indigo-600'
+                        ? 'text-white bg-theme-orange-500'
                         : 'text-gray-900 dark:text-dark-200',
                       'cursor-default select-none relative py-2 pl-3 pr-9'
                     )
@@ -87,7 +87,7 @@ export default function Select({
                       {option.value === selected?.value ? (
                         <span
                           className={clsx(
-                            active ? 'text-white' : 'text-indigo-600',
+                            active ? 'text-white' : 'text-theme-orange-500',
                             'absolute inset-y-0 right-0 flex items-center pr-4'
                           )}
                         >

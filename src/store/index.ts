@@ -26,13 +26,6 @@ const ElectronStore = {
   },
 } as StateStorage;
 
-export enum ApplicationFlow {
-  Home = 'Home',
-  Recording = 'Recording',
-  RecordingStopped = 'RecordingStopped',
-  Screenshot = 'Screenshot',
-}
-
 export type VideoFormat =
   | 'video/mp4'
   | 'video/avi'
@@ -42,9 +35,6 @@ export type VideoFormat =
 export type ScreenshotFormat = 'image/webp' | 'image/png' | 'image/jpeg';
 
 export interface CheeseStore extends ThemeStore, WindowStore {
-  flow: ApplicationFlow;
-  setFlow(newFlow: ApplicationFlow): void;
-
   recordAudio: boolean;
   toggleRecordAudio(): void;
 
@@ -64,12 +54,6 @@ export interface CheeseStore extends ThemeStore, WindowStore {
 const useStore = create<CheeseStore>(
   persist(
     (set, get) => ({
-      // TODO: should this be part of a separate, non-persisted store?
-      flow: ApplicationFlow.Home,
-      setFlow(newFlow: ApplicationFlow) {
-        set({ flow: newFlow });
-      },
-
       theme: 'light',
       toggleTheme() {
         const theme = get().theme;

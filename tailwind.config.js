@@ -17,6 +17,20 @@ module.exports = {
     },
     extend: {
       colors: {
+        'theme-orange': {
+          50: '#f6e6da',
+          100: '#ebceb5',
+          150: '#dfb692',
+          200: '#d19f70',
+          250: '#c2884e',
+          300: '#d69854',
+          400: '#d18c3f',
+          500: '#c77f30',
+          600: '#b2722b',
+          700: '#9d6526',
+          800: '#895821',
+          900: '#744b1c',
+        },
         dark: {
           950: 'rgb(23,23,23)',
           900: 'rgb(25,25,25)',
@@ -37,5 +51,9 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/typography'),
+    require('tailwindcss-textshadow'),
+  ],
 };
