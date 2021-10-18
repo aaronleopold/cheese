@@ -19,15 +19,14 @@ This is more of a TODO list for me :)
 - [x] Set up application flows (e.g. home, recording, recorded/viewing, screenshot, etc)
 - [ ] Allow screen shots (selfies; halfway done, I can get the image buffer currently)
   - [x] display
-  - [ ] download
+  - [ ] download (test each of the below works)
+    - [x] png
+    - [ ] jpg
+    - [ ] webp
 - [ ] Allow recording
   - [x] start/stop recording to chunks
-  - [ ] display before download
-    - [ ] webp
-    - [ ] avi
-    - [ ] ogg
-    - [ ] mp4
-  - [ ] download
+  - [x] display before download (displays as webm)
+  - [ ] download (test each of the below works)
     - [x] webp
     - [ ] avi
     - [ ] ogg
