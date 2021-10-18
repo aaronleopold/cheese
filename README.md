@@ -29,6 +29,7 @@ This is more of a TODO list for me :)
   - currently, restricting the size of the camera window changes the size of the resulting video. I just want the overflow to be hidden, rather than actually setting the size of the video.
 - [ ] Fix the dependencies
   - This is a MESS currently. A lot of the deps just don't play well with each other and require very specific versions, which is introducing some security issues. These should be sorted out eventually.
+  - Migrate to [Vite](https://github.com/cawa-93/vite-electron-builder)??
 - [x] Fix the icon on build ~(it doesn't work D:)~
 
 ## Attribution

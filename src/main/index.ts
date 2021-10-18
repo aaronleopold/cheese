@@ -1,11 +1,15 @@
-import path from 'path';
-import url from 'url';
 import { app, ipcMain } from 'electron';
 import is from 'electron-is';
 import { menubar, Menubar } from 'menubar';
+import path from 'path';
+import url from 'url';
+
 import { addContextmenu } from './menu';
 import createOpenHandler from './utils/createOpenHandler';
 import getDefaultWindowSize from './utils/getDefaultWindowSize';
+
+// dependabot
+delete require('electron').nativeImage.createThumbnailFromPath;
 
 export let mainWindow: Electron.BrowserWindow;
 export let mb: Menubar;
@@ -33,6 +37,7 @@ app.on('ready', () => {
       },
       alwaysOnTop: is.dev(),
     },
+    showDockIcon: false,
   });
 
   mb.on('after-create-window', () => {
@@ -42,6 +47,9 @@ app.on('ready', () => {
 
     if (mb.window) {
       mainWindow = mb.window;
+      // https://github.com/maxogden/menubar/issues/306
+      // also see package.json @ mac
+      app.dock?.hide();
     }
 
     addContextmenu();
