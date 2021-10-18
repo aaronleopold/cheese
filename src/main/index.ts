@@ -21,7 +21,7 @@ app.on('ready', () => {
           protocol: 'file:',
           slashes: true,
         }),
-    icon: path.resolve(__dirname, '..', 'assets/icons/png/16x16.png'),
+    icon: path.join(__dirname, '..', 'assets/icons/png/16x16.png'),
     tooltip: 'Cheese',
     browserWindow: {
       ...getDefaultWindowSize(),
@@ -29,6 +29,7 @@ app.on('ready', () => {
       webPreferences: {
         nodeIntegration: true,
       },
+      alwaysOnTop: process.env.NODE_ENV !== 'production',
     },
   });
 

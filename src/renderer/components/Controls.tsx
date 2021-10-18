@@ -1,5 +1,5 @@
 import { PropsOf } from '@headlessui/react/dist/types';
-import { CameraIcon, VideoCameraIcon } from '@heroicons/react/solid';
+import { CameraIcon, StopIcon, VideoCameraIcon } from '@heroicons/react/solid';
 import clsx from 'clsx';
 import React from 'react';
 import shallow from 'zustand/shallow';
@@ -45,14 +45,6 @@ export default function Controls({
 }: ControlsProps) {
   const { flow, setFlow } = useStore((state) => state, shallow);
 
-  function shouldShowRecordButton() {
-    return flow !== ApplicationFlow.Recording;
-  }
-
-  function shouldShowStopRecordingButton() {
-    return flow === ApplicationFlow.Recording;
-  }
-
   function handleScreenshot() {
     screenshot();
     setFlow(ApplicationFlow.Screenshot);
@@ -68,6 +60,18 @@ export default function Controls({
     setFlow(ApplicationFlow.RecordingStopped);
   }
 
+  function isRecording() {
+    return flow === ApplicationFlow.Recording;
+  }
+
+  function handleToggleRecording() {
+    if (flow === ApplicationFlow.Recording) {
+      handleStopRecording();
+    } else if (flow === ApplicationFlow.Home) {
+      handleStartRecording();
+    }
+  }
+
   return (
     <div className="pt-4 grid grid-cols-6 items-center w-full">
       <ControlButton
@@ -79,29 +83,22 @@ export default function Controls({
         <CameraIcon className="w-7 h-7" />
       </ControlButton>
 
-      {shouldShowRecordButton() && (
-        <ControlButton
-          colSpan={4}
-          justify="center"
-          title="Start Recording"
-          onClick={handleStartRecording}
-        >
-          <VideoCameraIcon className="w-7 h-7" />
-          Start Recording
-        </ControlButton>
-      )}
-
-      {shouldShowStopRecordingButton() && (
-        <ControlButton
-          colSpan={4}
-          justify="center"
-          title="Stop Recording"
-          onClick={handleStopRecording}
-        >
-          <VideoCameraIcon className="w-7 h-7" />
-          Stop Recording
-        </ControlButton>
-      )}
+      <ControlButton
+        colSpan={4}
+        justify="center"
+        title={`${isRecording() ? 'Stop' : 'Start'} Recording`}
+        onClick={handleToggleRecording}
+      >
+        {isRecording() ? (
+          <>
+            <StopIcon className="w-7 h-7" /> Stop Recording
+          </>
+        ) : (
+          <>
+            <VideoCameraIcon className="w-7 h-7" /> Start Recording
+          </>
+        )}
+      </ControlButton>
 
       <div className="col-span-1 justify-end" />
     </div>

@@ -7,7 +7,7 @@ import Home from './pages/Home/Home';
 import Settings from './pages/Settings/Settings';
 
 export default function App() {
-  const { theme, setFlow } = useStore((state) => state, shallow);
+  const { theme, flow, setFlow } = useStore((state) => state, shallow);
 
   useEffect(() => {
     if (theme === 'dark') {
@@ -18,6 +18,10 @@ export default function App() {
   }, [theme]);
 
   useEffect(() => {
+    if (flow !== ApplicationFlow.Home) {
+      setFlow(ApplicationFlow.Home);
+    }
+
     return () => {
       setFlow(ApplicationFlow.Home);
     };

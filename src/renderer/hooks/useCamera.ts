@@ -6,7 +6,7 @@ export default function useCamera() {
   const mediaRecorderRef = useRef<any>();
 
   const [screenshotData, setScreenshotData] = useState<string>();
-  const [recordedChunks, setRecordedChunks] = useState([]);
+  const [recordedChunks, setRecordedChunks] = useState<any[]>([]);
 
   const handleDataAvailable = useCallback(
     ({ data }) => {
@@ -24,7 +24,6 @@ export default function useCamera() {
       },
 
       startRecording() {
-        // setCapturing(true);
         mediaRecorderRef.current = new MediaRecorder(cameraRef.current.stream, {
           mimeType: 'video/webm',
         });
@@ -37,7 +36,6 @@ export default function useCamera() {
 
       stopRecording() {
         mediaRecorderRef.current.stop();
-        // setCapturing(false);
       },
 
       downloadRecording() {
@@ -49,7 +47,6 @@ export default function useCamera() {
           const a = document.createElement('a');
           document.body.appendChild(a);
           a.classList.add('hidden');
-          // a.style = 'display: none';
           a.href = url;
           a.download = 'react-webcam-stream-capture.webm';
           a.click();

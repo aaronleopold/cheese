@@ -2,24 +2,31 @@ import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid';
 import clsx from 'clsx';
 import React, { Fragment } from 'react';
-import Label from './ui/Label';
+import Label from './Label';
 
-interface VideoDevicesProps {
+export interface SelectOption {
   label: string;
-  devices?: MediaDeviceInfo[];
-  selected?: MediaDeviceInfo;
-  onSelect(device: MediaDeviceInfo): void;
+  value: any;
+}
 
+export interface SelectProps {
+  label: string;
+  options: SelectOption[];
+  selected?: SelectOption;
+  onSelect(value: any): void;
   disabled?: boolean;
 }
 
-export default function DeviceSelect({
+// FIXME: not done
+export default function Select({
   label,
-  devices = [],
+  options,
   selected,
   onSelect,
   disabled,
-}: VideoDevicesProps) {
+}: SelectProps) {
+  console.log({ options, selected });
+
   return (
     <div className="flex-1 min-w-0">
       <Listbox value={selected} onChange={onSelect} disabled={disabled}>
@@ -51,9 +58,9 @@ export default function DeviceSelect({
             leaveTo="opacity-0"
           >
             <Listbox.Options className="absolute z-10 mt-1 w-full bg-white dark:bg-dark-400 shadow-lg max-h-32 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
-              {devices.map((device) => (
+              {options.map((option) => (
                 <Listbox.Option
-                  key={device.deviceId}
+                  key={option.label}
                   className={({ active }) =>
                     clsx(
                       active
@@ -62,20 +69,22 @@ export default function DeviceSelect({
                       'cursor-default select-none relative py-2 pl-3 pr-9'
                     )
                   }
-                  value={device}
+                  value={option.value}
                 >
-                  {({ selected, active }) => (
+                  {({ active }) => (
                     <>
                       <span
                         className={clsx(
-                          selected ? 'font-semibold' : 'font-normal',
+                          option.value === selected?.value
+                            ? 'font-semibold'
+                            : 'font-normal',
                           'block truncate dark:text-dark-200'
                         )}
                       >
-                        {device.label}
+                        {option.label}
                       </span>
 
-                      {selected ? (
+                      {option.value === selected?.value ? (
                         <span
                           className={clsx(
                             active ? 'text-white' : 'text-indigo-600',

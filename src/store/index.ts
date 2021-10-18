@@ -1,7 +1,7 @@
 import Store from 'electron-store';
 import create from 'zustand';
 import { persist, StateStorage } from 'zustand/middleware';
-import MediaStorage, { defaultMediaStorage } from './storage';
+// import MediaStorage, { defaultMediaStorage } from './storage';
 import ThemeStore from './theme';
 import WindowStore from './window';
 
@@ -33,7 +33,15 @@ export enum ApplicationFlow {
   Screenshot = 'Screenshot',
 }
 
-export interface CheeseStore extends ThemeStore, WindowStore, MediaStorage {
+export type VideoFormat =
+  | 'video/mp4'
+  | 'video/avi'
+  | 'video/ogg'
+  | 'video/webm';
+
+export type ScreenshotFormat = 'image/webp' | 'image/png' | 'image/jpeg';
+
+export interface CheeseStore extends ThemeStore, WindowStore {
   flow: ApplicationFlow;
   setFlow(newFlow: ApplicationFlow): void;
 
@@ -42,6 +50,15 @@ export interface CheeseStore extends ThemeStore, WindowStore, MediaStorage {
 
   mutePlayback: boolean;
   toggleMutePlayback(): void;
+
+  mirrorVideo: boolean;
+  toggleMirrorVideo(): void;
+
+  videoFormat: VideoFormat;
+  setVideoFormat(format: VideoFormat): void;
+
+  screenshotFormat: ScreenshotFormat;
+  setScreenshotFormat(format: ScreenshotFormat): void;
 }
 
 const useStore = create<CheeseStore>(
@@ -71,15 +88,15 @@ const useStore = create<CheeseStore>(
         set({ size: key });
       },
 
-      ...defaultMediaStorage,
+      // ...defaultMediaStorage,
 
-      setVideoDirectory(dir) {
-        set({ videoDirectory: dir });
-      },
+      // setVideoDirectory(dir) {
+      //   set({ videoDirectory: dir });
+      // },
 
-      setPictureDirectory(dir) {
-        set({ pictureDirectory: dir });
-      },
+      // setPictureDirectory(dir) {
+      //   set({ pictureDirectory: dir });
+      // },
 
       recordAudio: true,
       toggleRecordAudio() {
@@ -89,6 +106,21 @@ const useStore = create<CheeseStore>(
       mutePlayback: true,
       toggleMutePlayback() {
         set({ mutePlayback: !get().mutePlayback });
+      },
+
+      mirrorVideo: false,
+      toggleMirrorVideo() {
+        set({ mirrorVideo: !get().mirrorVideo });
+      },
+
+      videoFormat: 'video/mp4',
+      setVideoFormat(format) {
+        set({ videoFormat: format });
+      },
+
+      screenshotFormat: 'image/png',
+      setScreenshotFormat(format) {
+        set({ screenshotFormat: format });
       },
     }),
     {

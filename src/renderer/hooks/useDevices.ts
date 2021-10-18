@@ -10,17 +10,14 @@ export interface SelectedDevices {
   videoinput?: MediaDeviceInfo;
 }
 
-const initialDevices: Devices = {
-  audioinputs: [],
-  videoinputs: [],
-};
-
 export default function useDevices() {
   const [devices, setDevices] = useState<Devices>();
   const [selectedDevices, setSelectedDevices] = useState<SelectedDevices>();
 
   useEffect(() => {
     async function init() {
+      // FIXME: this is failing on navigation away or reload... nvm, just had to restart
+      // my computer.... thank you for the 2 hours lost
       let mediaDevices = await navigator.mediaDevices.enumerateDevices();
 
       let newDevices: Devices = {
@@ -44,6 +41,8 @@ export default function useDevices() {
           seen.add(device.deviceId);
         }
       });
+
+      seen.clear();
 
       let _selectedDevices: SelectedDevices = {};
 

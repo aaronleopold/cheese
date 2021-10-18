@@ -13,7 +13,7 @@ export default function Home() {
   const [devices, selectedDevices, { selectDevice }] = useDevices();
   const [cameraRef, cameraData, cameraActions] = useCamera();
 
-  const { size, recordAudio, mutePlayback } = useStore(
+  const { size, recordAudio, mutePlayback, screenshotFormat } = useStore(
     (state) => state,
     shallow
   );
@@ -30,6 +30,7 @@ export default function Home() {
           className="rounded-md overflow-hidden"
           audio={recordAudio}
           muted={mutePlayback}
+          screenshotFormat={screenshotFormat}
           videoConstraints={{
             deviceId: selectedDevices?.videoinput?.deviceId,
           }}
@@ -41,7 +42,6 @@ export default function Home() {
               },
             ],
           }}
-          screenshotFormat="image/jpeg"
         />
 
         <DeviceOptions

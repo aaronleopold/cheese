@@ -3,21 +3,16 @@ import React from 'react';
 import shallow from 'zustand/shallow';
 import useStore from '../../../store';
 import { SIZES, windowSizeSelections } from '../../../store/window';
-import FilePicker from '../../components/ui/FIlePicker';
+import PictureFormatSelect from '../../components/PictureFormatSelect';
 import RadioGroup from '../../components/ui/RadioGroup';
 import Switch from '../../components/ui/Switch';
+import VideoFormatSelect from '../../components/VideoFormatSelect';
 
 export default function Settings() {
-  const {
-    theme,
-    toggleTheme,
-    size,
-    setSize,
-    videoDirectory,
-    setVideoDirectory,
-    pictureDirectory,
-    setPictureDirectory,
-  } = useStore((state) => state, shallow);
+  const { theme, toggleTheme, size, setSize } = useStore(
+    (state) => state,
+    shallow
+  );
 
   function handleSizeChange(value: any) {
     const { height, width } = SIZES[value] ?? SIZES.md;
@@ -36,19 +31,10 @@ export default function Settings() {
         setEnabled={toggleTheme}
       />
 
-      <FilePicker
-        label="Video Directory"
-        dir
-        value={videoDirectory}
-        onChange={setVideoDirectory}
-      />
-
-      <FilePicker
-        label="Picture Directory"
-        dir
-        value={pictureDirectory}
-        onChange={setPictureDirectory}
-      />
+      <div className="flex items-center space-x-2">
+        <PictureFormatSelect />
+        <VideoFormatSelect />
+      </div>
 
       <RadioGroup
         groupLabel="Window Size"

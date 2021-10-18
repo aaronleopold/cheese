@@ -1,5 +1,4 @@
 import { Dialog, Transition } from '@headlessui/react';
-import { CheckIcon } from '@heroicons/react/solid';
 import React, { Fragment, useRef } from 'react';
 import shallow from 'zustand/shallow';
 import useStore, { ApplicationFlow } from '../../store';
@@ -13,7 +12,7 @@ export default function FileExportModal({
   recordedChunks,
   screenshotData,
 }: FileExportModalProps) {
-  const { flow, setFlow } = useStore((state) => state, shallow);
+  const { flow, setFlow, videoFormat } = useStore((state) => state, shallow);
   const cancelButtonRef = useRef(null);
 
   function shouldShowModal() {
@@ -27,11 +26,19 @@ export default function FileExportModal({
     setFlow(ApplicationFlow.Home);
   }
 
-  function handleExportFile() {
+  // TODO: move this into the useCamera hook
+  function getDataUrl() {
     if (recordedChunks?.length) {
+      const blob = new Blob(recordedChunks, {
+        type: videoFormat,
+      });
+
+      return URL.createObjectURL(blob);
     } else if (screenshotData) {
+      return screenshotData;
     } else {
       // throw new Error('No data could be found to export');
+      return undefined;
     }
   }
 
@@ -42,6 +49,7 @@ export default function FileExportModal({
       return <img src={screenshotData} />;
     } else {
       // throw new Error('No data could be found to export');
+      return null;
     }
   }
 
@@ -66,7 +74,6 @@ export default function FileExportModal({
             <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
           </Transition.Child>
 
-          {/* This element is to trick the browser into centering the modal contents. */}
           <span
             className="hidden sm:inline-block sm:align-middle sm:h-screen"
             aria-hidden="true"
@@ -85,20 +92,20 @@ export default function FileExportModal({
             <div className="sm:max-w-lg inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full sm:p-6">
               <div className="">{renderContent()}</div>
               <div className="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
-                <button
-                  type="button"
+                <a
+                  href={getDataUrl()}
                   className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:col-start-2 sm:text-sm"
-                  onClick={handleExportFile}
+                  download
                 >
                   Export File
-                </button>
+                </a>
                 <button
                   type="button"
                   className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:col-start-1 sm:text-sm"
                   onClick={handleClose}
                   ref={cancelButtonRef}
                 >
-                  Cancel
+                  Close
                 </button>
               </div>
             </div>

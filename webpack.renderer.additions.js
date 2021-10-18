@@ -14,7 +14,13 @@ module.exports = (config) => {
 
   config.externals = ['react', 'react-dom'];
 
-  //   config.plugins.push(...[require('tailwindcss'), require('autoprefixer')]);
+  // https://github.com/maxogden/menubar/issues/188
+  // not working
+  config.target = 'electron-renderer';
+  config.node = {
+    __dirname: false,
+    __filename: false,
+  };
 
   return config;
 };

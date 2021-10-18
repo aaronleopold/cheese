@@ -14,5 +14,5 @@
     "target": "nsis",
     "icon": "src/assets/icons/win/icon.ico"
   },
-  "files": ["src/assets/**/*"]
+  "files": ["src/assets/**/*", "src/assets/icons/png/16x16.png"]
 }
