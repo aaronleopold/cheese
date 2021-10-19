@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import Webcam from 'react-webcam';
 import shallow from 'zustand/shallow';
 import useStore from '../../../store';
-import { CAMERA_PREVIEW_SIZES } from '../../../store/window';
+// import { CAMERA_PREVIEW_SIZES } from '../../../store/window';
 import Controls from '../../components/Controls';
 import DeviceOptions from '../../components/DeviceOptions';
 import FileExportModal from '../../components/FileExportModal';
@@ -17,12 +17,12 @@ export default function Home() {
 
   const [loading, { off }] = useToggle(true);
 
-  const { size, recordAudio, mutePlayback, screenshotFormat } = useStore(
+  const { recordAudio, mutePlayback, screenshotFormat } = useStore(
     (state) => state,
     shallow
   );
 
-  const cameraWidth = CAMERA_PREVIEW_SIZES[size];
+  // const cameraWidth = CAMERA_PREVIEW_SIZES[size];
 
   const handleMediaLoaded = useCallback(() => {
     off();
@@ -37,8 +37,8 @@ export default function Home() {
           {loading && <Loader active={loading} />}
           <Webcam
             ref={cameraRef}
-            width={cameraWidth}
-            className="rounded-md overflow-hidden"
+            // width={cameraWidth}
+            className="rounded-md z-0"
             audio={recordAudio}
             muted={mutePlayback}
             screenshotFormat={screenshotFormat}

@@ -2,7 +2,6 @@ import { PropsOf } from '@headlessui/react/dist/types';
 import { CameraIcon, StopIcon, VideoCameraIcon } from '@heroicons/react/solid';
 import clsx from 'clsx';
 import React, { useContext } from 'react';
-import shallow from 'zustand/shallow';
 import { ApplicationContext, ApplicationFlow } from '../context';
 
 interface ControlButtonProps extends PropsOf<'button'> {

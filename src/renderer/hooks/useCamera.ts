@@ -69,6 +69,7 @@ export default function useCamera() {
           a.download = getDownloadFileName(videoFormat);
           a.click();
           window.URL.revokeObjectURL(url);
+          document.removeChild(a);
         }
       },
 

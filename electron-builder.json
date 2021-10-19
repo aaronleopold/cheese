@@ -1,10 +1,10 @@
 {
-  "appId": "cheese.app",
-  "productName": "cheese",
+  "appId": "com.electron.cheese",
+  "productName": "Cheese",
   "compression": "store",
+  "copyright": "Copyright © year Aaron Leopold",
   "mac": {
-    "icon": "static/icons/mac/icon.icns",
-    "identity": null
+    "icon": "static/icons/mac/icon.icns"
   },
   "linux": {
     "icon": "static/icons/mac/icon.icns",

@@ -21,15 +21,15 @@ This is more of a TODO list for me :)
   - [x] display
   - [ ] download (test each of the below works)
     - [x] png
-    - [ ] jpg
-    - [ ] webp
-- [ ] Allow recording
+    - [x] jpg
+    - [x] webp
+- [x] Allow recording
   - [x] start/stop recording to chunks
   - [x] display before download (displays as webm)
-  - [ ] download (test each of the below works)
+  - [x] download (test each of the below works)
     - [x] webp
-    - [ ] avi
-    - [ ] ogg
+    - [x] avi
+    - [x] ogg
     - [x] mp4
 - [x] Add a yellow/orange theme (I mean, it IS cheese so)
 - [x] Finish dark theme
@@ -47,6 +47,10 @@ There are two potential, major changes/migrations I can see choosing between for
   - Maintained library, less security updates/maintenence, etc.
 - Mirgrate away from Electron over to [Neutralinojs](https://github.com/neutralinojs/neutralinojs)
   - Smaller bundle, less resource heavy, etc
+
+## License
+
+Please see [LICENSE](https://github.com/aaronleopold/cheese/blob/main/LICENSE)
 
 ## Attribution
 

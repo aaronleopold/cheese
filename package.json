@@ -1,7 +1,13 @@
 {
-  "name": "vidme",
+  "name": "cheese",
   "version": "1.0.0",
+  "author": {
+    "name": "Aaron Leopold",
+    "email": "aaronleopold1221@gmail.com",
+    "url": "https://www.aaronbleopold.com"
+  },
   "license": "MIT",
+  "description": "A menubar application to take pictures or record videos of yourself using your webcam",
   "scripts": {
     "dev": "electron-webpack dev",
     "compile": "electron-webpack --env.minify=false",
