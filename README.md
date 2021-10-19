@@ -38,7 +38,7 @@ This is more of a TODO list for me :)
 - [x] Fix the dependencies
   - ~This is a MESS currently. A lot of the deps just don't play well with each other and require very specific versions, which is introducing some security issues. These should be sorted out eventually.~ Fixed all fixable security issues from this. electron-webpack is not currently maintained, so in the future it might be wise to move away from webpack. see [Future Work](#future-work)
 - [x] Fix the icon on build ~(it doesn't work D:)~
-- [ ] Make first release!!! (coming soon, finalizing some things)
+- [x] Make first release!!! (coming soon, finalizing some things)
 
 ## Future Work
 
