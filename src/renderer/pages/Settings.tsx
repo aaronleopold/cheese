@@ -1,12 +1,12 @@
 import { ipcRenderer } from 'electron';
 import React from 'react';
 import shallow from 'zustand/shallow';
-import useStore from '../../../store';
-import { SIZES, windowSizeSelections } from '../../../store/window';
-import PictureFormatSelect from '../../components/PictureFormatSelect';
-import RadioGroup from '../../components/ui/RadioGroup';
-import Switch from '../../components/ui/Switch';
-import VideoFormatSelect from '../../components/VideoFormatSelect';
+import useStore from '../../store';
+import { SIZES, windowSizeSelections } from '../../store/window';
+import PictureFormatSelect from '../components/PictureFormatSelect';
+import RadioGroup from '../components/ui/RadioGroup';
+import Switch from '../components/ui/Switch';
+import VideoFormatSelect from '../components/VideoFormatSelect';
 
 export default function Settings() {
   const { theme, toggleTheme, size, setSize } = useStore(

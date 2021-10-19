@@ -4,8 +4,9 @@ import shallow from 'zustand/shallow';
 import useStore from '../store';
 import Layout from './components/Layout';
 import { ApplicationContext, ApplicationFlow } from './context';
-import Home from './pages/Home/Home';
-import Settings from './pages/Settings/Settings';
+
+const Home = React.lazy(() => import('./pages/Home'));
+const Settings = React.lazy(() => import('./pages/Settings'));
 
 export default function App() {
   const [flow, setFlow] = useState<ApplicationFlow>(ApplicationFlow.Home);

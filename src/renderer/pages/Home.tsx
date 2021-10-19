@@ -1,15 +1,14 @@
 import React, { useCallback } from 'react';
 import Webcam from 'react-webcam';
 import shallow from 'zustand/shallow';
-import useStore from '../../../store';
-// import { CAMERA_PREVIEW_SIZES } from '../../../store/window';
-import Controls from '../../components/Controls';
-import DeviceOptions from '../../components/DeviceOptions';
-import FileExportModal from '../../components/FileExportModal';
-import Loader from '../../components/ui/Loader';
-import useCamera from '../../hooks/useCamera';
-import useDevices from '../../hooks/useDevices';
-import useToggle from '../../hooks/useToggle';
+import useStore from '../../store';
+import Controls from '../components/Controls';
+import DeviceOptions from '../components/DeviceOptions';
+import FileExportModal from '../components/FileExportModal';
+import Loader from '../components/ui/Loader';
+import useCamera from '../hooks/useCamera';
+import useDevices from '../hooks/useDevices';
+import useToggle from '../hooks/useToggle';
 
 export default function Home() {
   const [devices, selectedDevices, { selectDevice }] = useDevices();
@@ -21,8 +20,6 @@ export default function Home() {
     (state) => state,
     shallow
   );
-
-  // const cameraWidth = CAMERA_PREVIEW_SIZES[size];
 
   const handleMediaLoaded = useCallback(() => {
     off();

@@ -1,5 +1,5 @@
 .env
-node_modules
+node_modules/
 dist
 
 yarn-error.log
@@ -9,3 +9,9 @@ config.ts
 .DS_STORE
 
 package-lock.json
+
+build/
+
+scripts/
+
+embedded.provisionprofile

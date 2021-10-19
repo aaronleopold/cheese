@@ -42,6 +42,16 @@ app.on('ready', () => {
 
   mb.on('after-create-window', () => {
     if (is.dev()) {
+      const {
+        default: installExtension,
+        REACT_DEVELOPER_TOOLS,
+      } = require('electron-devtools-installer');
+      installExtension(REACT_DEVELOPER_TOOLS)
+        .then((name: any) => console.log(`Added Extension:  ${name}`))
+        .catch((err: any) =>
+          console.log('Failed to install React Developer Tools: ', err)
+        );
+
       mb.window?.webContents.openDevTools({ mode: 'undocked' });
     }
 

@@ -1,10 +1,31 @@
 {
-  "appId": "com.electron.cheese",
+  "appId": "com.aaronleopold.cheese",
   "productName": "Cheese",
   "compression": "store",
-  "copyright": "Copyright © year Aaron Leopold",
+  "copyright": "Copyright © 2021 Aaron Leopold",
+  "afterSign": "scripts/notarize.js",
+  "dmg": {
+    "sign": false
+  },
   "mac": {
-    "icon": "static/icons/mac/icon.icns"
+    "icon": "static/icons/mac/icon.icns",
+    "target": ["mas", "dmg"],
+    "type": "distribution",
+    "category": "public.app-category.utilities",
+    "hardenedRuntime": true,
+    "gatekeeperAssess": false,
+    "provisioningProfile": "embedded.provisionprofile",
+    "entitlements": "build/entitlements.mac.plist",
+    "entitlementsInherit": "build/entitlements.mac.plist",
+    "extendInfo": {
+      "NSCameraUsageDescription": "This app requires camera access to record video.",
+      "NSMicrophoneUsageDescription": "This app requires microphone access to record audio."
+    }
+  },
+  "mas": {
+    "entitlements": "build/entitlements.mas.plist",
+    "type": "distribution",
+    "category": "public.app-category.utilities"
   },
   "linux": {
     "icon": "static/icons/mac/icon.icns",
