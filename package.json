@@ -6,6 +6,7 @@
     "email": "aaronleopold1221@gmail.com",
     "url": "https://www.aaronbleopold.com"
   },
+  "repository": "https://github.com/aaronleopold/cheese",
   "license": "MIT",
   "description": "A menubar application to take pictures or record videos of yourself using your webcam",
   "scripts": {
